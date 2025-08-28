@@ -1,0 +1,21 @@
+{% extends "master.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block main_content %}
+  <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; height: 80vh; text-align: center; color: white;">
+    
+    <!-- Text above -->
+    <h2 style="margin-bottom: 1rem; color: white;">Want something jazzy?</h2>
+    
+    <!-- Linked picture -->
+    <a href="{{ url_for('shop') }}">
+      <img src="https://blashaus.ch/wp-content/uploads/Chu-Bari-vers.204229-8-1-scaled.jpg.webp" 
+           alt="Jazz Instrument"
+           style="max-width: 600px; width: 100%; height: auto; border-radius: 10px; box-shadow: 0 4px 12px rgba(255, 255, 255, 0.5);">
+    </a>
+    
+    <!-- Text below -->
+    <p style="margin-top: 1rem; color: white;">Click the picture to go to the shop.</p>
+  </div>
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends "master.html" %}
+
+{% block title %}Lessons{% endblock %}
+
+{% block main_content %}
+
+<section class="lessons" style="padding: 4rem 2rem; max-width: 1200px; margin: auto; display: flex; flex-direction: column; gap: .5rem;">
+
+  <!-- Example Lesson Card -->
+  <div class="lesson-card card">
+    <div class="lesson-image">
+      <img src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1692985187i/197755195.jpg" alt="Lesson Image">
+    </div>
+    <div class="lesson-title">
+      <h3>Book 1: The Basics</h3>
+    </div>
+    <div class="lesson-action">
+      <button class="btn btn-primary">Read Now</button>
+    </div>
+  </div>
+
+  <div class="lesson-card card">
+    <div class="lesson-image">
+      <img src="https://m.media-amazon.com/images/I/51HZWd59TLL.jpg" alt="Lesson Image">
+    </div>
+    <div class="lesson-title">
+      <h3>Book 2: Advanced Techniques</h3>
+    </div>
+    <div class="lesson-action">
+      <button class="btn btn-primary">Read Now</button>
+    </div>
+  </div>
+
+    <div class="lesson-card card">
+    <div class="lesson-image">
+      <img src="https://saxshop.com/cdn/shop/files/blues-for-saxophone-820840.jpg?v=1714166644" alt="Lesson Image">
+    </div>
+    <div class="lesson-title">
+      <h3>Book 3: Mastering Techniques</h3>
+    </div>
+    <div class="lesson-action">
+      <button class="btn btn-primary">Read Now</button>
+    </div>
+  </div>
+
+</section>
+
+{% endblock %}

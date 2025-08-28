@@ -1,0 +1,75 @@
+{% extends "master.html" %}
+
+{% block title %}Shop{% endblock %}
+
+{% block main_content %}
+
+<div class="shop-container" style="padding: 2rem; gap: 2rem; display: flex;">
+
+  <!-- Sidebar -->
+  <div class="shop-sidebar">
+    <h3>Search</h3>
+    <input class="input" type="text" placeholder="Search instruments...">
+
+    <h3>Category</h3>
+    <label><input type="checkbox" value="instrument"> Instruments</label>
+    <label><input type="checkbox" value="brass"> Brass</label>
+    <label><input type="checkbox" value="tool"> Tool</label>
+    <label><input type="checkbox" value="accessory"> Accessory</label>
+  </div>
+
+  <!-- Product Cards Grid -->
+  <div class="shop-products" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1.5rem;">
+    {% for product in products %}
+      <div class="shop-card" style="border: 1px solid #ccc; border-radius: 10px; padding: 1rem; background: #fff; text-align: center;">
+        <!-- store lowercase category for filtering -->
+        <div class="shop-category" data-category="{{ product['category'] | lower }}">
+          {{ product['category'] | capitalize }}
+        </div>
+        <img src="{{ product['image'] }}" alt="{{ product['title'] }}" style="max-width: 100%; height: auto; border-radius: 8px;">
+        <div class="shop-title" style="margin: 0.5rem 0; font-weight: bold;">{{ product['title'] }}</div>
+        <div class="shop-price" style="margin-bottom: 0.5rem;">${{ product['price'] }}</div>
+        <button 
+          @click='addToCart({{ product|tojson | safe }})' 
+          class="btn btn-primary btn-add">
+          Add to Cart
+        </button>
+      </div>
+    {% endfor %}
+  </div>
+
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const searchInput = document.querySelector('.shop-sidebar input[type="text"]');
+    const categoryCheckboxes = document.querySelectorAll('.shop-sidebar input[type="checkbox"]');
+    const cards = document.querySelectorAll('.shop-card');
+
+    function filterProducts() {
+        const search = searchInput.value.toLowerCase();
+
+        const selectedCategories = Array.from(categoryCheckboxes)
+            .filter(cb => cb.checked)
+            .map(cb => cb.value);
+
+        cards.forEach(card => {
+            const title = card.querySelector('.shop-title').textContent.toLowerCase();
+            const category = card.querySelector('.shop-category').dataset.category; // lowercase from DB
+
+            let matchesSearch = title.includes(search) || category.includes(search);
+            let matchesCategory = selectedCategories.length === 0 || selectedCategories.includes(category);
+
+            if (matchesSearch && matchesCategory) {
+                card.style.display = "block";
+            } else {
+                card.style.display = "none";
+            }
+        });
+    }
+
+    searchInput.addEventListener('input', filterProducts);
+    categoryCheckboxes.forEach(cb => cb.addEventListener('change', filterProducts));
+});
+</script>
+{% endblock %}

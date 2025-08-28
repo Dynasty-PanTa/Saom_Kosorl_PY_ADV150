@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{% block title %}JazzMusiz{% endblock %}</title>
+  {% include "css.html" %}
+  <style>
+    /* Sidebar background */
+    aside {
+      background-color: #000 !important; /* Black sidebar */
+    }
+
+    /* Sidebar buttons */
+    .btn {
+      background-color: #fff !important; /* White button */
+      color: #000 !important;            /* Black text inside buttons */
+      border: none;
+      border-radius: 6px;
+      padding: 10px 20px;
+      font-weight: bold;
+      text-decoration: none;
+      display: inline-block;
+      cursor: pointer;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    .btn:hover {
+      background-color: #ddd !important; /* Light gray on hover */
+      color: #000 !important;
+    }
+
+    /* Sidebar link text (Dashboard, Products, Orders) */
+    aside nav a {
+      color: #000 !important;  /* buttons stay black text */
+    }
+
+    /* Sidebar heading / labels */
+    aside nav {
+      color: #fff; /* Make labels/links area white text if needed */
+    }
+
+    /* Main content headings */
+    h1, h2, h3 {
+      color: #fff !important; /* White headings in main content */
+    }
+  </style>
+</head>
+<body style="margin:0; font-family: sans-serif; background:#111; color:white;">
+
+  <!-- ===== Navbar ===== -->
+  <nav style="padding: 1rem 2rem; display: flex; justify-content: flex-end; align-items: center; background: #1b1b1b; color:white;">
+    <div class="nav-links" style="display: flex; gap:5px;">
+      <a href="/logout" class="btn">Logout</a>
+    </div>
+  </nav>
+
+  <!-- ===== Layout Wrapper ===== -->
+  <div style="display: flex; min-height: calc(100vh - 70px);">
+
+    <!-- ===== Sidebar ===== -->
+    <aside style="
+      width: 220px; 
+      padding: 2rem 1rem; 
+      border-right: 1px solid #333;
+      box-shadow: 2px 0 6px rgba(0,0,0,0.2);
+    ">
+      <nav style="display: flex; flex-direction: column; gap: 1rem;">
+        <a class="btn" href="/admin">Dashboard</a>
+        <a class="btn" href="/admin/products">Products</a>
+        <a class="btn" href="/admin/orders">Orders</a>
+      </nav>
+    </aside>
+
+    <!-- ===== Main Content ===== -->
+    <main style="flex: 1; padding: 2rem;">
+      {% block main_content %}
+      <!-- Page content will go here -->
+      {% endblock %}
+    </main>
+
+  </div>
+
+  <!-- ===== Footer ===== -->
+  <footer style="text-align: center; padding: 1rem 1rem; background: #000000; color:white; border-top: 1px solid #f6659a;">
+    <p>&copy; 2025 My Music Store Website. All rights reserved.</p>
+  </footer>
+
+  {% include "script.html" %}
+  
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</body>
+</html>
+
+
+
